@@ -7,7 +7,7 @@ body {
 /*BARRA DE NAVEGACION*/
 
 .logo{
-    width: 60%;
+    width: 25%;
     padding: 0;
 }
 
@@ -19,6 +19,20 @@ body {
    font-family: 'Luckiest Guy', cursive;
 }
 
+.nav-items{
+    display: flex;
+    flex: 1;
+    padding: 0 0 0 0;
+}
+nav .nav-items li{
+    list-style: none;
+    padding: 0 10px;
+}
+
+nav .nav-items li a:hover{
+    color: #E033FF;
+}
+
 .navbar {
     padding: 0;
 }
@@ -26,9 +40,12 @@ body {
     color: black;
     margin: 0 auto;
     padding:0 auto;
+    font-size: 20px;
+    text-shadow: 2px 2px 0 orangered;
 }
+
 .Iconraton{
-    width: 5%;
+    width: 4%;
     padding-left;
 }
 /*TEXTO FORMULARIOS*/
