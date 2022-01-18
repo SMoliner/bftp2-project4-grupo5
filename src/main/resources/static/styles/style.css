@@ -48,6 +48,19 @@ nav .nav-items li a:hover{
     width: 4%;
     padding-left;
 }
+
+.video_texto{
+    font-family: 'Luckiest Guy', cursive;
+    text-align:center;
+    color: #0a0a0a;}
+.Container_video {
+    display: flex;
+    justify-content: center;
+
+
+}
+
+
 /*TEXTO FORMULARIOS*/
 h1{
     color: white;
