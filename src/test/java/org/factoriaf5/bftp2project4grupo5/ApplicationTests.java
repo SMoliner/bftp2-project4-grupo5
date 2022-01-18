@@ -7,10 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -21,20 +23,26 @@ public class ApplicationTests {
     @Autowired
     MockMvc mockMvc;
 
+    @Autowired
+    LegacyGameRepository legacyGameRepository;
+
+    @BeforeEach
+    void setUp() {
+        legacyGameRepository.deleteAll();
+    }
+
     @Test
+    @WithMockUser
     void loadsTheHomePage() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"));
     }
 
-
-    @Autowired
-    LegacyGameRepository legacyGameRepository;
-
     @Test
+    @WithMockUser
     void returnsTheExistingGames() throws Exception {
-        Game game = legacyGameRepository.save(new Game("Duck Hunt", "Nes", 1984,"Shooter",12, 100, "image.png"  ));
+        Game game = legacyGameRepository.save(new Game("Duck Hunt2", "Nes", 1984,"Shooter",12, 100, "image.png"  ));
 
         mockMvc.perform(get("/games"))
                 .andExpect(status().isOk())
@@ -42,11 +50,8 @@ public class ApplicationTests {
                 .andExpect(model().attribute(  "games", hasItem(game)));
     }
 
-    @BeforeEach
-    void setUp() {
-        legacyGameRepository.deleteAll();
-    }
     @Test
+    @WithMockUser
     void returnsAFormToAddNewGames() throws Exception {
         mockMvc.perform(get("/games/new"))
                 .andExpect(status().isOk())
@@ -56,15 +61,17 @@ public class ApplicationTests {
     }
 
     @Test
+    @WithMockUser
     void allowsToCreateANewGames() throws Exception {
         mockMvc.perform(post("/games/new")
-                        .param("title", "Duck Hunt")
+                        .param("title", "Duck Hunt2")
                         .param("Platform", "Nes")
                         .param("year", "1984")
                         .param("category", "Shooter")
                         .param("pegi", "12")
-                        .param("price", "100")
+                        .param("price", "100.0")
                         .param( "image", "image.png"  )
+                        .with(csrf())
                 )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/games"))
@@ -72,19 +79,20 @@ public class ApplicationTests {
 
         List<Game> existingGames = (List<Game>) legacyGameRepository.findAll();
         assertThat(existingGames, contains(allOf(
-                hasProperty("title", equalTo("Duck Hunt")),
+                hasProperty("title", equalTo("Duck Hunt2")),
                 hasProperty("platform", equalTo("Nes")),
                 hasProperty("year", equalTo(1984)),
                 hasProperty("category", equalTo("Shooter")),
                 hasProperty("pegi", equalTo(12)),
-                hasProperty("price", equalTo(100)),
+                hasProperty("price", equalTo(100.0)),
                 hasProperty("image", equalTo( "image.png"))
         )));
     }
 
     @Test
+    @WithMockUser
     void returnsAFormToEditGames() throws Exception {
-        Game game = legacyGameRepository.save(new Game("Duck Hunt", "Nes", 1984, "Shooter", 12, 100, "image.png"));
+        Game game = legacyGameRepository.save(new Game("Duck Hunt2", "Nes", 1984, "Shooter", 12, 100, "image.png"));
         mockMvc.perform(get("/games/" + game.getId()+"/edit"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("games/edit"))
@@ -94,11 +102,27 @@ public class ApplicationTests {
 
 
     @Test
+    @WithMockUser
     void allowsToDeleteAGame() throws Exception {
-        Game game = legacyGameRepository.save(new Game("Duck Hunt", "Nes", 1984, "Shooter", 12, 100, "image.png"));
-        mockMvc.perform(get("/games/" + game.getId()+"/delete"))
+        Game game = legacyGameRepository.save(new Game("Duck Hunt2", "Nes", 1984, "Shooter", 12, 100.0, "image.png"));
+        mockMvc.perform(get("/" + game.getId()+"/delete"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
+    }
+
+
+    @Test
+    void anonymousUsersCannotCreateAGame() throws Exception {
+        mockMvc.perform(post("/games/new")
+                        .param("title", "Duck Hunt2")
+                        .param("platform", "Nes")
+                        .param("year", "1984")
+                        .param("category", "Shooter")
+                        .param("price", "100.0")
+                        .param("image", "image.png")
+                        .with(csrf()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("http://localhost/login"));
     }
 }
 
