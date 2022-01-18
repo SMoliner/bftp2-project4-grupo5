@@ -7,7 +7,7 @@ body {
 /*BARRA DE NAVEGACION*/
 
 .logo{
-    width: 25%;
+    width: 20%;
     padding: 0;
 }
 
@@ -15,7 +15,7 @@ body {
     background: linear-gradient(135deg, #ff5733, #ffc300, #ff7700, #ff8400ff, #ff7700ff, #fdc203, #fea703, #f85825, #fe4003);
     padding: 0;
     margin: 0;
-    font-size: 30px;
+    font-size: 18px;
    font-family: 'Luckiest Guy', cursive;
 }
 
@@ -26,7 +26,7 @@ body {
 }
 nav .nav-items li{
     list-style: none;
-    padding: 0 10px;
+    padding: 0 4px;
 }
 
 nav .nav-items li a:hover{
@@ -40,28 +40,27 @@ nav .nav-items li a:hover{
     color: black;
     margin: 0 auto;
     padding:0 auto;
-    font-size: 20px;
+    font-size: 17px;
     text-shadow: 2px 2px 0 orangered;
 }
 
 .Iconraton{
     width: 4%;
-    padding-left;
 }
 
 .video_texto{
     font-family: 'Luckiest Guy', cursive;
     text-align:center;
-    color: #0a0a0a;}
+    color: #0a0a0a;
+    font-size:25px;
+}
+
 .Container_video {
     display: flex;
     justify-content: center;
-
-
 }
 
-
-/*TEXTO FORMULARIOS*/
+/*TEXTO FORMULARIOS create new game*/
 h1{
     color: white;
 }
@@ -151,30 +150,21 @@ footer{
 
 .game .info {
     margin: 10px 20px;
-    font-size: 16px;
+    font-size: 12px;
+
 
 }
 
 .game .buttons {
     margin-top: 50px;
     padding: 10px;
-}
-
-
-
-
-
+    font-size: 10px;
 
 
 
 }
-h1{
-    color: white;
-}
 
-.container{
-    color:white;
-}
+
 
 
 
