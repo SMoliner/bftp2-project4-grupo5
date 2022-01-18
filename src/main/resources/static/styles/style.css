@@ -39,8 +39,12 @@ nav .nav-items li a:hover{
 .nav-link{
     color: black;
     margin: 0 auto;
+<<<<<<< HEAD
     padding:0 auto;
     font-size: 17px;
+=======
+    font-size: 20px;
+>>>>>>> c6410a22c90eb7d7ec6f534cdd07ab680934f87c
     text-shadow: 2px 2px 0 orangered;
 }
 
@@ -102,7 +106,7 @@ footer{
     20% { margin-left: 0;}
 
     25% { margin-left: -100%;}
-    45% { margin-left: -100;}
+    45% { margin-left: -100%;}
 
     50% { margin-left: -200%;}
     70% { margin-left: -200%;}
@@ -162,6 +166,14 @@ footer{
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+h1{
+    color: white;
+>>>>>>> c6410a22c90eb7d7ec6f534cdd07ab680934f87c
 }
 
 
