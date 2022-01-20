@@ -4,7 +4,7 @@ body {
     background-image: linear-gradient(135deg, #E033FF, #474747, #E033FF, #0a0a0a);
 }
 
-/*BARRA DE NAVEGACION*/
+
 
 .logo{
     width: 20%;
@@ -39,12 +39,12 @@ nav .nav-items li a:hover{
 .nav-link{
     color: black;
     margin: 0 auto;
-<<<<<<< HEAD
+
     padding:0 auto;
     font-size: 17px;
-=======
+
     font-size: 20px;
->>>>>>> c6410a22c90eb7d7ec6f534cdd07ab680934f87c
+
     text-shadow: 2px 2px 0 orangered;
 }
 
@@ -163,17 +163,14 @@ footer{
     margin-top: 50px;
     padding: 10px;
     font-size: 10px;
+}
 
-
-
-<<<<<<< HEAD
-=======
 
 
 
 h1{
     color: white;
->>>>>>> c6410a22c90eb7d7ec6f534cdd07ab680934f87c
+
 }
 
 
