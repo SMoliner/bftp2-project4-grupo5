@@ -4,8 +4,6 @@ body {
     background-image: linear-gradient(135deg, #E033FF, #474747, #E033FF, #0a0a0a);
 }
 
-
-
 .logo{
     width: 20%;
     padding: 0;
@@ -67,12 +65,23 @@ nav .nav-items li a:hover{
 /*TEXTO FORMULARIOS create new game*/
 h1{
     color: white;
+
 }
 .container{
     color:white;
+    font-family: 'Open Sans', sans-serif;
+
 }
-
-
+.form-group {
+    width: 50%;
+}
+.btn-primary {
+    color: #fff;
+    background: linear-gradient(135deg, red, #ff5733, #ffc300, #ff8400ff, #ff7700ff, #fdc203, #fea703, red);
+    border-color: black;
+    width: 20%;
+    border-radius: 30px;
+}
 /*FOOTER*/
 footer{
     padding: 20px;
