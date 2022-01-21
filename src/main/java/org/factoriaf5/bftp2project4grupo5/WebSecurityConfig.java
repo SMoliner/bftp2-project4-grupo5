@@ -11,10 +11,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests()
-                    .antMatchers("/", "/games/", "/assets/**","/styles/**", "/login").permitAll()
+                    .antMatchers("/", "/games/", "/assets/**","/styles/**", "/login", "/data/**/**").permitAll()
                     .anyRequest().authenticated()
                     .and().formLogin().permitAll()
                     .and().logout().permitAll();
+
         }
     }
 
