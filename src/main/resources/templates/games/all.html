@@ -1,7 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"></head>
 
+<body>
+<header th:replace="fragments/header"></header>
 
-<section class="container" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
-    <div class="game-list" >
+<section class="container" xmlns:th="http://www.thymeleaf.org"
+         xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <div class="game-list">
 
         <div class="game" th:each="game: ${games}">
             <div class="img-container">
@@ -19,13 +25,17 @@
             </div>
 
 
-        <div class="buttons">
-           <button class="btn btn-success btn-sm" th:sec="isAuthenticated()"><a th:href="'/games/'+${game.id}+'/edit'">Edit</a></button>
-            <button class="btn btn-success btn-sm" th:sec="isAuthenticated()"><a th:href="'/games/'+${game.id}+'/delete'">Delete</a></button>
+            <div class="buttons">
+                <button class="btn btn-success btn-sm" sec:authorize="isAuthenticated()"><a
+                        th:href="'/games/'+${game.id}+'/edit'">Edit</a></button>
+                <button class="btn btn-success btn-sm" sec:authorize="isAuthenticated()"><a
+                        th:href="'/games/'+${game.id}+'/delete'">Delete</a></button>
 
-        </div>
+            </div>
         </div>
     </div>
 
 </section>
+<footer th:replace="fragments/footer"></footer>
 
+</body>
